@@ -107,8 +107,8 @@ export default function Chat() {
   
 
   useEffect(() => {
-    setOpenChat(URL || file ? "Summarize" : "open Chats");
-  }, [URL, file]);
+    Focus?setOpenChat(URL?"Summarize":"OpenChats"):setOpenChat(file?"Summarize":"OpenChats");
+  }, [URL, file,Focus]);
 
   useEffect(() => {
     if (URL) setPreviewUrl(URL);

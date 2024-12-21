@@ -9,7 +9,7 @@ import ContentPreview from './ContentPreview';
 
 const Messagebox = (props) => {
     const { id, close, handleSubmit, handleCopy, handleClose, handleDownloadText, msg, url, Focus } = props;
-    const { request, getInfo, handleUser, load, Pdfmsg, previewUrl } = useContext(Chatcontext);
+    const { request, getInfo, handleUser, load, Pdfmsg, previewUrl,previewFile } = useContext(Chatcontext);
     const [typedText, setTypedText] = useState('');
     const [isTyping, setIsTyping] = useState(false);
 
@@ -66,8 +66,9 @@ const Messagebox = (props) => {
     return (
         <div className={`h-full rounded-lg shadow-2xl z-30 absolute right-0 transition-all duration-700 ${close ? "w-full" : "w-0 overflow-hidden"}`}>
             <div className="flex h-full">
-                <div className="w-1/2 h-full bg-gray-50 border-r">
+                <div className="w-1/2 h-full bg-slate-100 border-r">
                     {Focus && <ContentPreview url={previewUrl} file={null} />}
+                    {!Focus && <ContentPreview url={null} file={previewFile} />}
                 </div>
                 <div className="w-1/2 h-full bg-slate-100">
                     <div className="flex items-center justify-between px-4 w-full h-12 bg-slate-900">
