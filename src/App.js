@@ -1,20 +1,17 @@
-// import About from "./components/About";
-// import Navbar from "./components/Navbar";
 import Main from "./components/Main";
-
-
+import Home from "./components/Home";
+import { Routes,Route, useParams } from "react-router-dom";
+import Chat from "./components/Chat";
 function App() {
   return (
     <>
-      {/* <div className="w-screen h-screen bg-[#030513]">
-        <Navbar />
-      </div>
-
-      <hr />
-      <div className="w-screen pb-7 bg-[#030513]">
-        <About />
-      </div> */}
-      <Main />
+     <Routes>
+      
+      <Route path="/" element={<Home />} />
+      <Route path="/summarize/*" element={<Main/>} >
+        <Route path="chat/:id" element={<Chat key={useParams().id} />} />
+      </Route>
+     </Routes>
     </>
   );
 }

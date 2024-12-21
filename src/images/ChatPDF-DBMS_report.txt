@@ -1,0 +1,35 @@
+PDF: **Greeting Message:**
+
+Hello! 🎉 Welcome to the project report for "Vybe – Movie Streaming System," submitted by talented students Jatin, Kiran, and Manoj from the Department of Information Science and Engineering at The National Institute of Engineering. This report showcases their hard work and dedication in fulfilling the requirements for their Bachelor of Engineering degree. Under the guidance of esteemed faculty members, they have embarked on an exciting journey in the world of database management systems. Enjoy exploring their project!
+
+**Example Questions:**
+
+1. What is the main objective of the "Vybe – Movie Streaming System" project?
+2. Who were the faculty members guiding the students during this project?
+3. What is the significance of the project in the context of their degree program?
+
+Me: tell me about the project
+
+PDF: The project titled "Vybe – Movie Streaming System" involves the development of a comprehensive streaming platform designed to emulate the functionality and user experience of popular services like Netflix. The project aims to create a seamless and robust user experience by integrating modern web technologies across its frontend, backend, and database components.
+
+### Key Components of the Project:
+
+1. **Frontend Development**:
+   - Built using **React.js**, which is favored for its component-based architecture that promotes reusability and efficient state management.
+   - The user interface is designed to be intuitive and engaging, featuring responsive design for compatibility across various devices and dynamic content rendering for smooth interactions.
+   - **Tailwind CSS** is used for styling, allowing for rapid development of a customizable and visually appealing user interface.
+
+2. **Backend Development**:
+   - Developed using **Spring Boot**, a framework that simplifies the development of Java-based web applications by providing solutions for dependency management, configuration, and security.
+   - The backend handles business logic, processes requests, and interacts with the database, integrating external APIs and managing user data.
+   - Utilizes **RESTful services** for efficient communication between the frontend and backend.
+
+3. **Database Management**:
+   - The project employs **SQL/MySQL** as its database management system, chosen for its reliability and performance.
+   - The database stores and manages all necessary data, including user information, movie data, and viewing history.
+   - **JDBC (Java Database Connectivity)** is used to connect the Spring Boot backend with the SQL/MySQL database, facilitating the execution of SQL queries and transaction management.
+
+### Objectives:
+The primary objective of the project is to create a robust streaming platform that not only provides a user-friendly interface but also ensures efficient data management and seamless user interactions, thereby enhancing the overall viewing experience for users,.
+
+This project is part of the students' coursework for their Bachelor of Engineering degree in Information Science and Engineering at The National Institute of Engineering, Mysuru, and reflects their understanding of modern web technologies and database management systems,.
