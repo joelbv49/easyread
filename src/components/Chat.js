@@ -6,11 +6,9 @@ import Messagebox from './Messagebox';
 import FileUploads from './FileUploads';
 import { getSummary } from './get';
 
-
 export default function Chat() {
-  // id from params
   const { id } = useParams();
-  const { handleDefault, setUrlchat, handleId, handleSubmit2, handleSubmit, isValidURL, Urlchats, handleSuccess, handleFailure, alert, alertMsg, success, Default, failure, handleLoad, setLoad, handleClose2, close2, Pdfmsg, file, setPreviewUrl, setPreviewFile } = useContext(Chatcontext);
+  const { handleDefault, setUrlchat, handleId, handleSubmit2, handleSubmit, isValidURL, Urlchats, handleSuccess, handleFailure, alert, alertMsg, success, Default, failure, handleLoad, setLoad, handleClose2, close2, Pdfmsg, file, setPreviewUrl, setPreviewFile ,handleCloseMark2} = useContext(Chatcontext);
 
   handleId(id);
   const [Focus, setFocus] = useState(true);
@@ -20,7 +18,6 @@ export default function Chat() {
   const [text, setText] = useState("");
   const [openChat, setOpenChat] = useState("open Chats");
 
-  // 
   const handleFocus = () => setFocus((prevFocus) => !prevFocus);
 
   const handleCloseMark = () => {
@@ -36,7 +33,7 @@ export default function Chat() {
       return;
     }
 
-    try{
+    try {
       if (URL) await handleURLValidation();
     }
     catch (error) {
@@ -54,7 +51,7 @@ export default function Chat() {
   };
 
   const handleURLValidation = async () => {
-    handleDefault(true, "Reading the Document ...");
+    handleDefault(true, "Reading the Article ...");
     if (!isValidURL(URL)) {
       handleDefault(false, "");
       throw new Error ("Invalid URL");
@@ -77,7 +74,6 @@ export default function Chat() {
     Summarize();
   }, [Urlchats, id]);
 
-
   const handleCopy = (message) => {
     setText(message);
     navigator.clipboard.writeText(text);
@@ -85,30 +81,33 @@ export default function Chat() {
     setTimeout(() => handleSuccess(false, ""), 2000);
   };
 
-  const handleDownloadText = () => {
+  const handleDownloadText = (content) => {
     const createDownloadLink = (fileContent) => {
-      const element = document.createElement("a");
-      const fileBlob = new Blob([fileContent], { type: "text/plain" });
-  
-      // Try to use createObjectURL, fallback to data URI if unavailable
-      const url = typeof URL.createObjectURL === "function" 
-        ? URL.createObjectURL(fileBlob)
-        : `data:text/plain;charset=utf-8,${encodeURIComponent(fileContent)}`;
-  
-      element.href = url;
-      element.download = "summary.txt";
-      document.body.appendChild(element);
-      element.click();
-      document.body.removeChild(element);
+        const element = document.createElement("a");
+        const fileBlob = new Blob([fileContent], { type: "text/plain" });
+
+        const url = typeof URL.createObjectURL === "function"
+            ? URL.createObjectURL(fileBlob)
+            : `data:text/plain;charset=utf-8,${encodeURIComponent(fileContent)}`;
+
+        element.href = url;
+        element.download = "summary.txt";
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
     };
-  
-    createDownloadLink(text);
-  };
-  
+
+    if (content) {
+        createDownloadLink(content);
+    } else {
+        handleFailure(true,"No content available");
+    }
+};
+
 
   useEffect(() => {
-    Focus?setOpenChat(URL?"Summarize":"OpenChats"):setOpenChat(file?"Summarize":"OpenChats");
-  }, [URL, file,Focus]);
+    Focus ? setOpenChat(URL ? "Summarize" : "OpenChats") : setOpenChat(file ? "Summarize" : "OpenChats");
+  }, [URL, file, Focus]);
 
   useEffect(() => {
     if (URL) setPreviewUrl(URL);
@@ -121,46 +120,40 @@ export default function Chat() {
   return (
     <>
       <div className="flex flex-col">
-        {/* text */}
-        <div className="w-full h-40 flex justify-center items-center">
-          <h1 className="font-bold text-4xl font-custom2">Empower your reading experience with EasyRead.</h1>
+        <div className="w-full h-40 flex justify-center items-center px-4 sm:px-0">
+          <h1 className="font-bold text-2xl sm:text-3xl md:text-4xl font-custom2 text-center">Empower your reading experience with EasyRead.</h1>
         </div>
 
-        {/* Enter the URL */}
-        <div className="flex flex-col items-center w-full mt-2 h-[30rem]">
-          <h1 className="font-bold text-2xl font-custom2 ">Enter an Article URL or upload a file</h1>
+        <div className="flex flex-col items-center w-full mt-2 h-auto sm:h-[30rem]">
+          <h1 className="font-bold text-xl sm:text-2xl font-custom2 text-center px-4 sm:px-0">Enter an Article URL or upload a file</h1>
 
-          <div className="w-1/2 h-96 mt-14 flex flex-col space-y-10 ">
-            {/* options */}
-            <div className="flex w-1/2 h-10 self-center space-x-4 rounded-md">
+          <div className="w-full sm:w-3/4 md:w-1/2 h-auto sm:h-96 mt-8 sm:mt-14 flex flex-col space-y-6 sm:space-y-10 px-4 sm:px-0">
+            <div className="flex w-full sm:w-3/4 md:w-1/2 h-10 self-center space-x-4 rounded-md">
               <button className={`cursor-pointer border border-blue-900 rounded-md hover:scale-105 hover:transition-transform hover:duration-700 flex items-center justify-center w-1/2 h-full ${Focus ? "text-white bg-blue-600" : "text-black bg-white"}`} onClick={handleFocus} disabled={Focus}>
-                <h3 className="font-bold">Add Url</h3>
+                <h3 className="font-bold text-sm sm:text-base">Add Url</h3>
               </button>
               <button className={`flex items-center border border-blue-900 rounded-md hover:scale-105 hover:transition-transform hover:duration-700 cursor-pointer justify-center w-1/2 h-full ${!Focus ? "text-white bg-blue-600" : "text-black bg-white"}`} onClick={handleFocus} disabled={!Focus}>
-                <h3 className="font-bold">Upload a file</h3>
+                <h3 className="font-bold text-sm sm:text-base">Upload a file</h3>
               </button>
             </div>
 
-            {/* url */}
-            {Focus && <div className="">
-              <input type="url" placeholder="Paste the URL of the article here" className="w-full h-10 px-4 text-sm rounded-md outline-none focus:ring-1 focus:ring-blue-700 border border-slate-400 focus:placeholder:text-xs focus:placeholder:-translate-y-3 focus:placeholder:transition-all focus:placeholder:duration-700" value={URL} onChange={(e) => setURL(e.target.value)} />
-            </div>}
+            {Focus && (
+              <div className="w-full">
+                <input type="url" placeholder="Paste the URL of the article here" className="w-full h-10 px-4 text-sm rounded-md outline-none focus:ring-1 focus:ring-blue-700 border border-slate-400 focus:placeholder:text-xs focus:placeholder:-translate-y-3 focus:placeholder:transition-all focus:placeholder:duration-700" value={URL} onChange={(e) => setURL(e.target.value)} />
+              </div>
+            )}
 
-            {/* file */}
             {!Focus && <FileUploads />}
 
-            {/* submit */}
-            <button type='submit' className="w-full hover:bg-blue-950 hover:scale-105 hover:transition-transform hover:duration-700 h-10 font-bold bg-blue-900 text-white rounded-lg" onClick={Focus ? handleClose : handleClose2}>{openChat}</button>
+            <button type='submit' className="w-full hover:bg-blue-950 hover:scale-105 hover:transition-transform hover:duration-700 h-10 font-bold bg-blue-900 text-white rounded-lg text-sm sm:text-base" onClick={Focus ? handleClose : handleClose2}>{openChat}</button>
           </div>
         </div>
 
-        {/* alert */}
         {Default && <Alert alert={alert} msg={alertMsg} Default={Default} />}
         {success && <Alert alert={alert} msg={alertMsg} success={success} />}
         {failure && <Alert alert={alert} msg={alertMsg} failure={failure} />}
       </div>
 
-      {/* chat with pdf */}
       <Messagebox
         key={Focus ? 'URL' : 'file'}
         id={id}
@@ -168,12 +161,13 @@ export default function Chat() {
         handleCopy={handleCopy}
         handleDownloadText={handleDownloadText}
         close={Focus ? close : close2}
-        handleClose={Focus ? handleCloseMark : handleClose2}
+        handleClose={Focus ? handleCloseMark : handleCloseMark2}
         msg={Focus ? msg : Pdfmsg}
         url={URL}
         file={file}
-        Focus = {Focus}
+        Focus={Focus}
       />
     </>
   )
 }
+

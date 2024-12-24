@@ -74,7 +74,7 @@ const Messagebox = (props) => {
                     <div className="flex items-center justify-between px-4 w-full h-12 bg-slate-900">
                         <p className="text-white font-semibold font-custom2">Welcome! Here is Your Summary</p>
                         <div className="flex space-x-6">
-                            <RiFolderDownloadFill className='fill-white md:w-5 md:h-5 hover:scale-110 transition duration-700 cursor-pointer' onClick={handleDownloadText} />
+                            <RiFolderDownloadFill className='fill-white md:w-5 md:h-5 hover:scale-110 transition duration-700 cursor-pointer' onClick={()=>{handleDownloadText(msg[0].message)}} />
                             <IoCloseSharp className='fill-white md:w-5 md:h-5 cursor-pointer hover:scale-110 transition duration-700' onClick={handleClose} />
                         </div>
                     </div>

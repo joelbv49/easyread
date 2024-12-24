@@ -1,38 +1,71 @@
 import React, { useState } from 'react'
-import { FiAlignJustify } from 'react-icons/fi'
+import { FiAlignJustify, FiX } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-scroll';
+
 export default function Navbar() {
-    const [menu,setMenu] = useState(true);
-    const handleMenu = ()=>{
-        setMenu(!menu);
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
     }
-  return (
-    <div className='shadow-lg justify-between  items-center z-30  flex h-14 bg-slate-900 fixed w-full'>
 
-      <h3 className="text-white font-bold pl-4">EasyRead</h3>
-      
-     
-      <div className="text-white  h-6 pr-4 mr-4 md:hidden" onClick={handleMenu}><FiAlignJustify/> </div>
+    const navigate = useNavigate();
+    const handleNavigation = () => {
+      navigate('/summarize/chat/1');
+    }
 
-      
-      <ul className={`md:flex  md:space-x-32 md:pr-12 text-white md:bg-transparent absolute md:static top-16 md:top-0 right-1 md:right-0 space-y-4 md:space-y-0 bg-slate-900 p-4 md:p-0 transition-all md:transition-none overflow-hidden duration-500  ${(menu)?"translate-x-52":"translate-x-0 "} `}>
-        <li className="">Chat with pdf</li>
-        <hr className="md:hidden" />
-        <li className="">
-          <Link
-            to="about" // Match the id of the About section
-            smooth={true}
-            duration={500}
-            className="cursor-pointer hover:underline mr-20"
-          >
-          features
-          </Link>
-        </li>
-        <hr className="md:hidden" />
-        <li className="">contact us</li>
-      </ul>
+    return (
+        <nav className='bg-slate-900 fixed w-full z-50'>
+            <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+                <div className='flex items-center justify-between md:h-12 h-16'>
+                    <div className='flex items-center'>
+                        <h3 className="text-white font-bold text-xl font-custom1"><span className='text-3xl font-serif '>E</span>asyRead</h3>
+                    </div>
+                    <div className='hidden md:block'>
+                        <div className='ml-10 flex items-baseline space-x-4'>
+                            <div className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 hover:scale-110 transition-all duration-700 cursor-pointer rounded-md text-sm font-medium' onClick={handleNavigation}>Chat with URL</div>
+                            <Link
+                                to="about"
+                                smooth={true}
+                                duration={500}
+                                className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 hover:scale-110 transition-all duration-700  rounded-md text-sm font-medium cursor-pointer'
+                            >
+                                Features
+                            </Link>
+                            <div className='text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 hover:scale-110 transition-all duration-700 cursor-pointer rounded-md text-sm font-medium'>Contact Us</div>
+                        </div>
+                    </div>
+                    <div className='md:hidden'>
+                        <button
+                            onClick={toggleMenu}
+                            className='inline-flex  items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none '
+                        >
+                            <span className='sr-only'>Open main menu</span>
+                            {menuOpen ? <FiX className='block h-6 w-6' /> : <FiAlignJustify className='block h-6 w-6' />}
+                        </button>
+                    </div>
+                </div>
+            </div>
 
-     
-    </div>
-  )
+            {menuOpen && (
+                <div className='md:hidden'>
+                    <div className='px-2 pt-2 pb-3 space-y-1 sm:px-3'>
+                        <div className='text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium' onClick={handleNavigation}>Chat with PDF</div>
+                        <Link
+                            to="about"
+                            smooth={true}
+                            duration={500}
+                            className='text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium cursor-pointer'
+                            onClick={toggleMenu}
+                        >
+                            Features
+                        </Link>
+                        <div className='text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium'>Contact Us</div>
+                    </div>
+                </div>
+            )}
+        </nav>
+    )
 }
+

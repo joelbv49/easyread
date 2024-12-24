@@ -23,7 +23,7 @@ export default function Main() {
 
   return (
     <>
-      <div className="flex w-full h-full">
+      <div className="flex  w-full h-screen md:h-full">
         {/* Sidebar */}
         {sideBar && (
           <div className="relative group mt-3 pl-3">
@@ -37,7 +37,7 @@ export default function Main() {
         )}
 
         <div
-          className={`min-w-56 bg-slate-100 h-screen flex flex-col font-custom1 transition-transform duration-700 ${sideBar ? '-translate-x-96 overflow-hidden' : 'min-w-56'
+          className={`min-w-56 absolute md:static  bg-slate-100 h-screen flex flex-col font-custom1 transition-transform duration-700 ${sideBar ? '-translate-x-96 overflow-hidden' : 'min-w-56'
             }`}
         >
           <div className="w-full h-10 flex justify-between items-center px-4">
@@ -167,15 +167,15 @@ export default function Main() {
 
       </div>
       {/* footer */}
-      <footer className='flex w-full justify-between items-center  bg-slate-900 px-6 h-20'>
+      <footer className='flex w-full justify-between items-center  bg-slate-900  h-20'>
         <div className="">
-          <h3 className="text-white text-sm pl-4">Contact info: EasyRead@gmail.com</h3>
+          <h3 className="text-white text-xs pl-4">Contact info: EasyRead@gmail.com</h3>
         </div>
-        <div className=" text-white text-sm">
+        <div className=" text-white text-xs">
           © 2024 EasyRead. All Rights Reserved.
         </div>
 
-        <ul className="flex space-x-10 text-white">
+        <ul className="flex space-x-1 md:space-x-10 text-white">
           <li><FaInstagramSquare className='w-5 h-5' /></li>
           <li><FaLinkedin className='w-5 h-5' /></li>
           <li><FaXTwitter className='w-5 h-5' /></li>
