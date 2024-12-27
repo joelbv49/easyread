@@ -27,7 +27,7 @@ export default function Main() {
         {/* Sidebar */}
         {sideBar && (
           <div className="relative group mt-3 pl-3">
-            <div className="hover:scale-110" onClick={handleSideBar}>
+            <div className="hover:scale-110 hover:cursor-pointer" onClick={handleSideBar}>
               <BsLayoutSidebar />
             </div>
             <span className="absolute text-slate-100 text-sm px-1 w-24 text-center -top-1 left-8 hidden group-hover:block rounded-full py-1 bg-gray-500">
@@ -42,7 +42,7 @@ export default function Main() {
         >
           <div className="w-full h-10 flex justify-between items-center px-4">
             <div className="relative group">
-              <div className="hover:scale-110" onClick={handleSideBar}>
+              <div className="hover:scale-110 hover:cursor-pointer" onClick={handleSideBar}>
                 <BsLayoutSidebar />
               </div>
               <span className="absolute text-slate-100 text-xs px-1 w-24 text-center -top-1 left-5 hidden group-hover:block rounded-full py-1 bg-gray-500">
@@ -52,7 +52,7 @@ export default function Main() {
 
             {/* New Chat */}
             <div className="relative group" onClick={handleNewChat}>
-              <div className="hover:scale-110">
+              <div className="hover:scale-110 hover:cursor-pointer">
                 <FiEdit />
               </div>
               <span className="absolute text-slate-100 text-sm px-1 w-24 text-center -left-10 -bottom-8 hidden group-hover:block rounded-full py-1 bg-gray-500">
@@ -61,7 +61,7 @@ export default function Main() {
             </div>
           </div>
 
-          <div className="px-2 mt-4 text-sm w-[90%] py-2 self-center flex justify-between hover:bg-slate-200 rounded-md items-center">
+          <div className="px-2 mt-4 hover:cursor-pointer text-sm w-[90%] py-2 self-center flex justify-between hover:bg-slate-200 rounded-md items-center">
             <h3 className="">EasyRead</h3>
             {/* New Chat */}
             <div className="relative group" onClick={handleNewChat}>
@@ -78,7 +78,7 @@ export default function Main() {
             <div className="">
               <TbCategory />
             </div>
-            <h3 className="">Explore EasyRead</h3>
+            <Link to='/' ><h3 className="">Explore EasyRead</h3></Link>
           </div>
 
           {/* Chat List */}

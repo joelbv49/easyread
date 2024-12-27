@@ -402,6 +402,8 @@ export const Chatstate = ({ children }) => {
   };
 
   // Add these to your context state
+
+
   const [previewUrl, setPreviewUrl] = useState('');
   const [previewFile, setPreviewFile] = useState(null);
 

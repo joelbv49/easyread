@@ -9,8 +9,8 @@ import ContentPreview from './ContentPreview';
 
 const Messagebox = (props) => {
     const { id, close, handleSubmit, handleCopy, handleClose, handleDownloadText, msg, url, Focus } = props;
-    const { request, getInfo, handleUser, load, Pdfmsg, previewUrl,previewFile } = useContext(Chatcontext);
-    const [typedText, setTypedText] = useState('');
+    const { request, getInfo, handleUser, load, Pdfmsg, previewUrl, previewFile } = useContext(Chatcontext);
+    const [typedText, setTypedText] = useState(' ');
     const [isTyping, setIsTyping] = useState(false);
 
     const containerRef = useRef(null);
@@ -29,6 +29,24 @@ const Messagebox = (props) => {
             printContent(msg[msg.length - 1].message);
         }
     }, [load, msg]);
+    // Define a ref to hold the interval ID
+    const printIntervalRef = useRef(null);
+
+    useEffect(() => {
+        // Cleanup function to clear interval when `close` changes
+        if (close && printIntervalRef.current) {
+            clearInterval(printIntervalRef.current);
+            setIsTyping(false); // Ensure typing state is reset
+            setTypedText(' ');   // Clear any ongoing typed text
+        }
+
+        return () => {
+            // Cleanup on unmount
+            if (printIntervalRef.current) {
+                clearInterval(printIntervalRef.current);
+            }
+        };
+    }, [close]);
 
     const printContent = (content) => {
         let i = 0;
@@ -40,7 +58,10 @@ const Messagebox = (props) => {
                 clearInterval(interval);
                 setIsTyping(false);
             }
-        }, 15);
+        }, 5);
+
+        // Save the interval ID in a ref to clear it later if necessary
+        printIntervalRef.current = interval;
     };
 
     const renderMessage = (message, index, isLatest) => {
@@ -74,7 +95,7 @@ const Messagebox = (props) => {
                     <div className="flex items-center justify-between px-4 w-full h-12 bg-slate-900">
                         <p className="text-white font-semibold font-custom2">Welcome! Here is Your Summary</p>
                         <div className="flex space-x-6">
-                            <RiFolderDownloadFill className='fill-white md:w-5 md:h-5 hover:scale-110 transition duration-700 cursor-pointer' onClick={()=>{handleDownloadText(msg[0].message)}} />
+                            <RiFolderDownloadFill className='fill-white md:w-5 md:h-5 hover:scale-110 transition duration-700 cursor-pointer' onClick={() => { handleDownloadText(msg[0].message) }} />
                             <IoCloseSharp className='fill-white md:w-5 md:h-5 cursor-pointer hover:scale-110 transition duration-700' onClick={handleClose} />
                         </div>
                     </div>

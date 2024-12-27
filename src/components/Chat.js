@@ -8,7 +8,7 @@ import { getSummary } from './get';
 
 export default function Chat() {
   const { id } = useParams();
-  const { handleDefault, setUrlchat, handleId, handleSubmit2, handleSubmit, isValidURL, Urlchats, handleSuccess, handleFailure, alert, alertMsg, success, Default, failure, handleLoad, setLoad, handleClose2, close2, Pdfmsg, file, setPreviewUrl, setPreviewFile ,handleCloseMark2} = useContext(Chatcontext);
+  const {handleDefault, setUrlchat, handleId, handleSubmit2, handleSubmit, isValidURL, Urlchats, handleSuccess, handleFailure, alert, alertMsg, success, Default, failure, handleLoad, setLoad, handleClose2, close2, Pdfmsg, file, setPreviewUrl, setPreviewFile ,handleCloseMark2} = useContext(Chatcontext);
 
   handleId(id);
   const [Focus, setFocus] = useState(true);
@@ -44,6 +44,7 @@ export default function Chat() {
     }
     
     if (!close && (URL || msg.length)) {
+      
       await handleLoad();
       if (URL) await Summarize();
     }
