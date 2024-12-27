@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Document, Page, pdfjs } from 'react-pdf';
+import {pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 
@@ -24,7 +24,7 @@ const ContentPreview = ({ url, file }) => {
         URL.revokeObjectURL(fileUrl);
       }
     };
-  }, [url, file]);
+  }, [url, file, fileUrl]);
 
 
 
@@ -45,7 +45,7 @@ const ContentPreview = ({ url, file }) => {
             src={fileUrl}
             title="Website Preview"
             className="w-full h-full border-none"
-            sandbox="allow-scripts allow-same-origin"
+            sandbox="allow-scripts"
           />
         );
     }

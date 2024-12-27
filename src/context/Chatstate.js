@@ -408,7 +408,7 @@ export const Chatstate = ({ children }) => {
   const [previewFile, setPreviewFile] = useState(null);
 
   return (
-    <Chatcontext.Provider value={{ handleCloseMark2, handleDefault, setUrlchat, error, handleRemoveFile, handleDragOver, handleDrop, handleNewChat, isValidURL, handleSubmit2, handleId, Urlchats, request, handleUser, handleSubmit, getInfo, handleChatClick, activeChat, alert, alertMsg, success, Default, failure, handleDefault, handleSuccess, handleFailure, DocChats, load, handleLoad, setLoad, handleClose2, close2, Pdfmsg, handleFile, file, previewUrl, setPreviewUrl, previewFile, setPreviewFile, contentLoader }}>
+    <Chatcontext.Provider value={{ handleCloseMark2, handleDefault, setUrlchat, error, handleRemoveFile, handleDragOver, handleDrop, handleNewChat, isValidURL, handleSubmit2, handleId, Urlchats, request, handleUser, handleSubmit, getInfo, handleChatClick, activeChat, alert, alertMsg, success, Default, failure, handleSuccess, handleFailure, DocChats, load, handleLoad, setLoad, handleClose2, close2, Pdfmsg, handleFile, file, previewUrl, setPreviewUrl, previewFile, setPreviewFile, contentLoader }}>
       {children}
     </Chatcontext.Provider>
   );

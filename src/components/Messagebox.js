@@ -8,7 +8,7 @@ import { Chatcontext } from '../context/Chatstate';
 import ContentPreview from './ContentPreview';
 
 const Messagebox = (props) => {
-    const { id, close, handleSubmit, handleCopy, handleClose, handleDownloadText, msg, url, Focus } = props;
+    const { id, close, handleSubmit, handleCopy, handleClose, handleDownloadText, msg,Focus } = props;
     const { request, getInfo, handleUser, load, Pdfmsg, previewUrl, previewFile } = useContext(Chatcontext);
     const [typedText, setTypedText] = useState(' ');
     const [isTyping, setIsTyping] = useState(false);
