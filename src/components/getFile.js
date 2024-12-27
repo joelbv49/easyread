@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const uploadPdf = async (file) => {
     try {
-        const apiEndPoint = 'https://gokul2cid-sumarfastapi.hf.space/upload-pdf/';
+        const apiEndPoint = process.env.REACT_APP_BASE_FILE || 'https://gokul2cid-sumarfastapi.hf.space/upload-pdf/';
 
         // Create a FormData object to handle the file upload
         const formData = new FormData();

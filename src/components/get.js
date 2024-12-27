@@ -4,7 +4,7 @@ import axios from "axios";
 export const getSummary = async (url)=>{
     try{
 
-        const apiEndPoint =  'https://gokul2cid-sumarfastapi.hf.space/summary/';
+        const apiEndPoint =  process.env.REACT_APP_BASE_URL||'https://gokul2cid-sumarfastapi.hf.space/summary/';
         const requestBody = {
             url:url
         }
